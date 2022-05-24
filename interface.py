@@ -7,7 +7,8 @@ fig = go.Figure() # or any Plotly Express function e.g. px.bar(...)
 import dash
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
-import dash_html_components as html
+# from dash_html_components import html
+from dash import html
 import os
 
 
@@ -50,7 +51,7 @@ phase_card = html.Div([
 mag_card = html.Div([
   dbc.Card([
     dbc.Card([
-    dbc.CardHeader("Phase",style={"background-color":"#ffffff"}),
+    dbc.CardHeader("Magnitude"),
     dbc.CardBody(dcc.Graph(id ="plot_mag", figure=go.Figure(layout={'template':"plotly_dark"}))),
   ],className="opacity-50")
 ])
@@ -59,9 +60,19 @@ mag_card = html.Div([
 operations_card = html.Div([
   dbc.Card([
     dbc.CardHeader("Operations"),
-    dbc.CardBody(),
-  ])
+    dbc.CardBody([ 
+        dbc.Button("Add Zero", color="secondary"),
+        dbc.Button("Add Pole", color="secondary"),
+        dbc.Button("Remove Zeros", color="secondary"),
+        dbc.Button("Remove Poles", color="secondary"),
+        dbc.Button("Remove Selected", color="secondary"),
+        dbc.Button("CLEAR", color="secondary"),
+        
+    ],
+    className="d-grid gap-4",style={"margin-top": "2rem"})
 ])
+])
+
 
 
 # app.layout = html.Div([
@@ -85,8 +96,8 @@ app.layout = html.Div([
             
               }),
     dbc.Col([
-      dbc.Row(operations_card),
-      dbc.Row(zplot_card)
+      dbc.Row(zplot_card),
+      dbc.Row(operations_card)
   ],className="no-gutters padding-0",style= {
               "padding-right": "0 !important",
               }),

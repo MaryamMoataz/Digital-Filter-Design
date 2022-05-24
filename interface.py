@@ -42,7 +42,7 @@ zplot_card = html.Div([
 
 phase_card = html.Div([
   dbc.Card([
-    dbc.CardHeader("Phase"),
+    dbc.CardHeader("Phase Response"),
     dbc.CardBody(dcc.Graph(id ="plot_phase", figure=go.Figure(layout={'template':"plotly_dark"}))),
   ],className="opacity-50")
 ])
@@ -51,7 +51,7 @@ phase_card = html.Div([
 mag_card = html.Div([
   dbc.Card([
     dbc.Card([
-    dbc.CardHeader("Magnitude"),
+    dbc.CardHeader("Magnitude Response"),
     dbc.CardBody(dcc.Graph(id ="plot_mag", figure=go.Figure(layout={'template':"plotly_dark"}))),
   ],className="opacity-50")
 ])

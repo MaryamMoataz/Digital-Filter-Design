@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+
+body {  
+    background-color: rgb(63, 61, 61);  
+
+    
+}  
+
+.card{
+    background-color: rgba(113, 108, 108, 0.641);
+    
+
+    color:aliceblue;
+}
+
+.nav-tabs .nav-link.active {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            border: 1px solid #ffffff;
+            
+        }
+
+.nav-tabs .nav-link {
+
+            background-color: rgba(55, 53, 53, 0.645);
+            color: aliceblue;
+            border: 1px solid #000000;
+            margin-bottom: 1rem;
+        }
+
+.btn{
+    background-color: rgba(55, 53, 53, 0.645);
+    color:aliceblue;
+    border: 1px solid #ffffff;
+    margin: 0.25rem;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), rgba(0,0,0,0.19);
+    font-size: 12px;
+}
+
+.form-select{
+
+    background-color: rgba(116, 114, 114, 0.645);
+    color:aliceblue;
+}
+
+
+
+
+    </style>
+
+    <title>Digital Filter Design</title>
+  </head>
+  <body>
+
+
+    <div class="container mt-2" id="main">
+        
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#filterdesign"></svg>Digital Filter Design</a></li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#allpass"></svg>All Pass Filter Design</a></li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#realtime"></svg> Real-Time Filtering</a></li>
+        </ul>       
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="filterdesign">
+                <h1 style="color:aliceblue;">Digital Filter Design</h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card" id="circlecard">
+                            <div class="card-body">
+                                <div class="box" id="design-unit-circle">
+                                    <h3 id="circle-title">Add Poles/Zeros</h3>
+                                    <div id="circle-canvas"></div>
+                                    <div id="circle-control">
+                                        <button id="addzero" class="btn btn-secondary-control mode-control">Add Zeros</button>
+                                        <button id="addpole" class="btn btn-secondary-control mode-control">Add Poles</button>
+                                        <button id="addconjugate" class="btn btn-secondary-control">Add Conjugate</button>
+                                        <button id="removeselected" class="btn btn-secondary-control">Remove Selected</button>
+                                        <button id="removezeros" class="btn btn-secondary-control">Remove Zeros</button>
+                                        <button id="removepoles" class="btn btn-secondary-control">Remove Poles</button>
+                                        <button id="clear" class="btn btn-secondary-control">CLEAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="box" id="filter-response">
+                                <h4 class="freq-response-title title">Magnitude Response</h4>
+                                <div id="filter-mag-response" class="response-plotting"> </div>
+                                <h4 class="freq-response-title title">Phase Response</h2>
+                                    <div id="filter-phase-response" class="response-plotting"> </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane " id="allpass">
+                <h1 style="color:aliceblue;">All Pass Filter Design</h1>
+                        <div style="height: 100px;
+                        width: 100%;" class="card" id="selectcard">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                <div id="selectcoefficientsdrop" class="dropdown">
+                                    <button style="width: 100%;"  id="selectcoefficients" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Select Coeffecients
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                      <li><a class="dropdown-item" href="#">Action</a></li>
+                                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                                  <div class="col-sm-6">
+                                  <input style="width: 70%; background-color:rgb(63, 61, 61);border: 1px solid #ffffff   ;" range="0-9" min="-1" max="1" type="number" step="0.01" id="new-value" value="">
+				                  <button style="width: 25%;font-size: 16x;"id="new-all-pass-coef" class="btn">Go</button>
+                                </div>
+                            </div>
+                                
+
+
+
+                            </div>
+
+                        </div> 
+                        
+                                <div style="margin-top:  0.75rem;" class="card" id="allpassplots">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            
+                                        <div class="box" id="all-pass-response">
+                                            
+                                            <div id="all-pass-response-container">
+                                                <div style="width: 50%;"class="col">
+
+                                                <h4 class="title" id="all-pass-response-title">All Pass Phase Response</h4>
+                                                <div id="all-pass-phase-response" class="response-plotting"> </div>
+                                                        </div>
+                                                    </div>
+
+                                        <div style="width: 50%;"class="col">
+                                            <div id="final-filter-response">
+
+                                                <h4  id="final-filter-response-title" class="title">Final Phase Response</h4>
+                                                <div id="final-filter-phase-response" class="response-plotting"> </div>
+                                            </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+
+
+
+                                </div>
+
+                        
+
+
+
+            </div>
+
+            <div class="tab-pane " id="realtime">
+                <h1 style="color:aliceblue;">Real Time Filtering</h1>
+                <div class="card" id="realtimefilter">
+                    <div class="card-body">
+                        <div class="row">
+                
+                <div style="text-align: center;" class="box" id="real-time-filter-container">
+                    <input style="background-color:rgb(63, 61, 61);" class="btn" type="file" id="csvFile" accept=".csv" />
+                    <button class="btn" value="Submit" id="csv-submitter">Filter</button>
+                    <button class="btn" value="Stop" id="stop-filtering">Stop</button>
+                    <input style=" background: transparent; ;" type="range" min="1" max="100" value="1" class="slider" id="myRange">
+                    <p id="slider-value"></p>
+        
+                </div>
+                        </div>
+                    </div>
+                </div>
+                    <div style="margin-top: 0.75rem;" class="card" id="realfilterplots">
+                    <div class="card-body">
+                        <div class="row">
+                <div class="box" id="real-time-filter-plots">
+                    <div class="half-plot-container" id="all-pass-response-container">
+                        <h4 class="title" id="original-signal-title">Original Signal</h4>
+                        <div class=".half-plot " id="original-signal"></div>
+                    </div>
+                    <div id="all-pass-response-container">
+                        <h4 class="title" id="filtered-signal-title">Filtered Signal</h4>
+                        <div class=".half-plot" id="filtered-signal"></div>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+            
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+    
+
+    
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
